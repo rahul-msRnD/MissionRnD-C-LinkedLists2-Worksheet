@@ -18,6 +18,21 @@ struct node {
 	struct node *next;
 };
 
-struct node * merge2LinkedLists(struct node *head1, struct node *head2) {
-	return NULL;
+struct node * merge2LinkedLists(struct node *a, struct node *b) {
+	struct node* result = NULL;
+	if (a == NULL)
+		return b;
+	else if (b == NULL)
+		return a;
+	else if (a->num >= b->num)
+	{
+		result = b;
+		result->next = merge2LinkedLists(a, b->next);
+	}
+	else
+	{
+		result = a;
+		result->next = merge2LinkedLists(a->next, b);
+	}
+	return result;
 }
